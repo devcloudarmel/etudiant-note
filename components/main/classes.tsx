@@ -11,7 +11,9 @@ interface Props {
 
 const Classes: React.FC<Props> = ({ etudiant }) => {
     // Calcul de la moyenne minimale, maximale et des statistiques
-    const moyennes = etudiant.map((etudiant) => (etudiant.note_math + etudiant.note_phys) / 2);
+    const moyennes = etudiant.length > 0
+    ? etudiant.map((etudiant) => (etudiant.note_math + etudiant.note_phys) / 2)
+    : [0]; // Valeur par défaut si le tableau est vide
     const moyenneMin = Math.min(...moyennes);
     const moyenneMax = Math.max(...moyennes);
     const admis = etudiant.filter((etudiant) => (etudiant.note_math + etudiant.note_phys) / 2 >= 10).length;
