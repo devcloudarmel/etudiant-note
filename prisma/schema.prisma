@@ -5,23 +5,23 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-		provider = "prisma-client-js"
-		previewFeatures = ["fullTextSearch", "fullTextIndex"]
+    provider        = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 // prisma/schema.prisma
 datasource db {
-    provider    = "mysql"
-    url  	    = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
     relationMode = "prisma"
 }
 
 model Etudiant {
-    id         String      @id @default(uuid())
-    numEt      String      @unique
-    nom        String
-    note_math  Float
-    note_phys  Float
+    id        String @id @default(uuid())
+    numEt     String @unique
+    nom       String
+    note_math Float
+    note_phys Float
 
     created_at DateTime @default(now())
     updated_at DateTime @updatedAt

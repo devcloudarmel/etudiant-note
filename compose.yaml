@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  web:
+    image: etudiants:2.0
+    container_name: etudiants
+    platform: "linux/amd64"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - "db"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_DATABASE: etudiants
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./mysql:/var/lib/mysql
+    command:
+      [
+        "--character-set-server=utf8mb4",
+        "--collation-server=utf8mb4_unicode_ci",
+      ]
+
+  adminer:
+    image: adminer
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8080:8080
