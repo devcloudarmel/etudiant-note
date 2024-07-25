@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  workflow_run:
+    workflows: ["Docker Image CI"]
+    types:
+      - completed
+
+jobs:
+  buid:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull docker image
+        run: sudo docker pull devcloudarmel/etudiant_note:latest
+
+      - name: Delete old container
+        run: sudo docker rm -f etudiant_note-container || true
+      
+      - name: Run docker container
+        run: sudo docker run -d -p 3306:3306 --name etudiant_note-container devcloudarmel/etudiant_note:latest
