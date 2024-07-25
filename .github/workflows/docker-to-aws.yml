@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on: 
+  push:
+    branches:
+      [main]
+
+jobs:
+  buid:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to Dockerhub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -P $DOCKER_PASSWORD
+    
+    - name: Build the docker image
+      run: docker build -t etudiant_note .
+
+    - name: Push to docker hub
+      run: docker push devcloudarmel/etudiant_note:latest
