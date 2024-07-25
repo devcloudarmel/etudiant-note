@@ -16,9 +16,12 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    
+
     - name: Build the docker image
-      run: docker build -t etudiant_note .
+      run: docker build -t etudiant_note:latest .
+
+    - name: Tag the image name
+      run: docker tag etudiant_note:latest devcloudarmel/etudiant_note:latest
 
     - name: Push to docker hub
       run: docker push devcloudarmel/etudiant_note:latest
