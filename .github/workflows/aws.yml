@@ -1,8 +1,8 @@
-name: Docker Image CI
+name: aws
 
 on:
   workflow_run:
-    workflows: ["Docker Image CI"]
+    workflows: ["dockerhub"]
     types:
       - completed
 
