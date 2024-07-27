@@ -10,7 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+
     - name: Login to Dockerhub
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -18,10 +20,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Build the docker image
-      run: docker build -t etudiant_note:latest .
-
-    - name: Tag the image name
-      run: docker tag etudiant_note:latest devcloudarmel/etudiant_note:latest
+      run: docker build -t devcloudarmel/etudiant_note:1.0 .
 
     - name: Push to docker hub
-      run: docker push devcloudarmel/etudiant_note:latest
+      run: docker push devcloudarmel/etudiant_note:1.0
