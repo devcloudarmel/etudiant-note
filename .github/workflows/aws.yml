@@ -1,4 +1,4 @@
-name: aws
+name: WELCOME-MESSAGE-AWS
 
 on:
   workflow_run:
