@@ -2,7 +2,7 @@ name: aws
 
 on:
   workflow_run:
-    workflows: ["dockerhub"]
+    workflows: ["PUSH_TO_DOCKERHUB"]
     types:
       - completed
 

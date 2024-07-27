@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   web:
-    image: etudiants:2.0
+    # Hope this will change
+    image: etudiants:1.0
     container_name: etudiants
     platform: "linux/amd64"
     build:
@@ -15,10 +16,12 @@ services:
       - /app/node_modules
     depends_on:
       - "db"
+    networks:
+      - net_etudiants1.0
 
   db:
-    image: mysql:8.0
-    container_name: mysql
+    image: mysql:9.0
+    container_name: db
     ports:
       - 3306:3306
     restart: always
@@ -32,10 +35,15 @@ services:
         "--character-set-server=utf8mb4",
         "--collation-server=utf8mb4_unicode_ci",
       ]
+    networks:
+      - net_etudiants1.0
 
   adminer:
     image: adminer
     container_name: phpmyadmin
     restart: always
     ports:
-      - 8080:8080
+      - 3001:8080
+
+networks:
+  net_etudiants1.0:
