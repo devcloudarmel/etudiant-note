@@ -1,9 +1,9 @@
 name: PUSH_TO_DOCKERHUB
 
 on: 
-  push:
-    branches:
-      [main]
+  pull_request: 
+    branches: 
+      - main
 
 jobs:
   buid:
@@ -20,7 +20,7 @@ jobs:
       run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
     - name: Build the docker image
-      run: docker build -t devcloudarmel/etudiant_note:1.0 .
+      run: docker build -t devcloudarmel/etudiants:1.0 .
 
     - name: Push to docker hub
-      run: docker push devcloudarmel/etudiant_note:1.0
+      run: docker push devcloudarmel/etudiants:1.0
