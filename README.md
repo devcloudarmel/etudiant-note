@@ -39,3 +39,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # etudiant
 # etudiant
 # etudiant-note
+
+
+DATABASE_URL="mysql://root:root@localhost:3306/etudiants"
+
+# Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_cmVsYXRlZC1zaGVwaGVyZC00OC5jbGVyay5hY2NvdW50cy5kZXYk
+CLERK_SECRET_KEY=sk_test_mkPFgK0kVIyVICzxHYrcQqghPPqcLtphNMXhzBE7J4
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/sign-up
